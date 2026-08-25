@@ -44,3 +44,19 @@ com.controlefinanceiro.core
 
 Veja o relatório da Etapa 6 (`RELATORIO_ETAPA6.docx`) para o detalhamento
 dos princípios SOLID aplicados e das refatorações realizadas.
+
+## Etapa 7 — Testes
+
+O subprojeto `controle-financeiro-core-test/` contém os testes unitários
+(JUnit 5) das regras de negócio deste projeto. Ele é um projeto NetBeans
+independente que referencia este projeto como dependência.
+
+- Instruções de configuração e execução: `controle-financeiro-core-test/SETUP_TESTES.md`
+- Plano de testes completo (unitários + manuais + planejados para a web): `docs/PLANO_DE_TESTES_ETAPA7.docx`
+
+Os testes cobrem, sem depender de banco de dados real:
+- Cálculo de saldo financeiro (`ResumoFinanceiroTest`)
+- Regras de cadastro/login de usuário (`UsuarioServiceTest`)
+- Regras de categoria (`CategoriaServiceTest`)
+- Regras de registro de movimentação, incluindo o teste de regressão do
+  bug de isolamento por usuário corrigido na Etapa 6 (`MovimentacaoServiceTest`)
