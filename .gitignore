@@ -1,11 +1,6 @@
-# Build do NetBeans/Ant
 build/
 dist/
 
-# Configuracao sensivel - nunca versionar credenciais reais
-src/db.properties
-
-# Arquivos de IDE
 nbproject/private/
 *.class
 .nb-gradle/
