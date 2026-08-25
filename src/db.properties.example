@@ -1,0 +1,6 @@
+# Copie este arquivo para "db.properties" (no mesmo diretório) e preencha
+# com as credenciais do seu ambiente local. O arquivo "db.properties" real
+# NÃO deve ser commitado no repositório (ver .gitignore).
+db.url=jdbc:mysql://localhost:3306/controle_financeiro?useSSL=false&serverTimezone=UTC
+db.user=root
+db.password=
