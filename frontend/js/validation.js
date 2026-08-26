@@ -1,17 +1,3 @@
-/**
- * validation.js
- *
- * Funções genéricas de validação e exibição de erro por campo,
- * reutilizadas pelos formulários de login, cadastro e nova movimentação.
- * As regras aqui reproduzem no front-end (por conveniência e resposta
- * imediata ao usuário) as mesmas regras já implementadas e testadas na
- * camada de negócio Java (UsuarioService, MovimentacaoService,
- * CategoriaService — Etapas 6 e 7). Esta camada de validação em JavaScript
- * NÃO substitui a validação do servidor: quando o back-end existir, ele
- * deve repetir essas checagens, pois validação apenas no cliente pode ser
- * contornada.
- */
-
 const CFValidation = (() => {
   function isRequired(valor) {
     return typeof valor === "string" && valor.trim().length > 0;
@@ -30,7 +16,6 @@ const CFValidation = (() => {
     return !Number.isNaN(numero) && numero > 0;
   }
 
-  /** Marca um .field como inválido e exibe a mensagem associada. */
   function setFieldError(fieldEl, mensagem) {
     fieldEl.classList.add("has-error");
     const msgEl = fieldEl.querySelector(".error-message");

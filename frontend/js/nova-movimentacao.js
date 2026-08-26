@@ -1,10 +1,3 @@
-/**
- * nova-movimentacao.js — validação e registro de entrada/saída.
- * Espelha MovimentacaoService.registrarMovimentacao (Etapas 6/7): valor
- * numérico maior que zero, descrição obrigatória e categoria válida
- * (rejeita o placeholder "Selecione...", id 0 — mesma regra de
- * CategoriaService.buscarCategoriaValida).
- */
 document.addEventListener("DOMContentLoaded", () => {
   const usuario = CFStorage.getSessao();
   if (!usuario) {
@@ -19,8 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "index.html";
   });
 
-  // Popula o select de categorias a partir do "banco" (mesmas categorias
-  // que CategoriaService.listarCategorias retornaria).
   const selectCategoria = document.getElementById("categoria");
   CFStorage.getCategorias().forEach((categoria) => {
     const option = document.createElement("option");

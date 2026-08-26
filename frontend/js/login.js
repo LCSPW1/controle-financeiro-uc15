@@ -1,11 +1,4 @@
-/**
- * login.js — validação e autenticação da tela de login.
- * Espelha as regras de UsuarioService.autenticar (Etapas 6/7):
- * campos obrigatórios e credenciais válidas, lançando o equivalente
- * visual de ValidacaoException / AutenticacaoException.
- */
 document.addEventListener("DOMContentLoaded", () => {
-  // Se já existe sessão ativa, pula direto para o dashboard.
   if (CFStorage.getSessao()) {
     window.location.href = "dashboard.html";
     return;

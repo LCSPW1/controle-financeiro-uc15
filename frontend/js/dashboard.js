@@ -1,9 +1,3 @@
-/**
- * dashboard.js — painel principal.
- * Usa CFStorage.gerarResumo() (espelha ResumoFinanceiro / MovimentacaoService
- * das Etapas 6/7) para exibir entradas, saídas e saldo do usuário logado,
- * e lista os lançamentos com filtro por tipo.
- */
 document.addEventListener("DOMContentLoaded", () => {
   const usuario = CFStorage.getSessao();
   if (!usuario) {

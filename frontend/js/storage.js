@@ -1,17 +1,3 @@
-/**
- * storage.js
- *
- * "Banco de dados" simulado no navegador (localStorage), usado apenas
- * para dar vida às páginas nesta etapa — o enunciado da Etapa 8 dispensa
- * explicitamente a conexão com um banco de dados real. As estruturas de
- * dados abaixo espelham de propósito os models já validados no projeto
- * controle-financeiro-core (Etapas 6 e 7): Usuario, Categoria,
- * Movimentacao (com TipoMovimentacao "ENTRADA"/"SAIDA") e o cálculo de
- * ResumoFinanceiro (saldo = entradas − saídas). Quando o back-end real for
- * implementado, este arquivo é o único que precisa ser substituído por
- * chamadas fetch() a uma API — nenhuma página HTML precisa mudar.
- */
-
 const CFStorage = (() => {
   const KEYS = {
     usuarios: "cf_usuarios",
@@ -37,7 +23,6 @@ const CFStorage = (() => {
     return lista.reduce((max, item) => Math.max(max, item.id), 0) + 1;
   }
 
-  /** Garante que existam categorias padrão na primeira execução. */
   function init() {
     const categorias = ler(KEYS.categorias, null);
     if (!categorias) {
@@ -71,7 +56,6 @@ const CFStorage = (() => {
     );
   }
 
-  /** Espelha UsuarioService.cadastrar (Etapa 6/7). */
   function cadastrarUsuario({ nome, email, senha }) {
     const usuarios = getUsuarios();
     const novo = { id: proximoId(usuarios), nome, email, senha };
@@ -80,7 +64,6 @@ const CFStorage = (() => {
     return novo;
   }
 
-  /** Espelha UsuarioService.autenticar (Etapa 6/7). */
   function autenticar(email, senha) {
     return (
       getUsuarios().find(
@@ -125,7 +108,7 @@ const CFStorage = (() => {
       idUsuario,
       valor,
       descricao,
-      tipo, // "ENTRADA" | "SAIDA"
+      tipo,
       idCategoria,
       data: new Date().toISOString(),
     };
@@ -134,12 +117,6 @@ const CFStorage = (() => {
     return nova;
   }
 
-  /**
-   * Espelha MovimentacaoService.gerarResumo / model.ResumoFinanceiro
-   * (Etapa 6/7): saldo = totalEntradas - totalSaidas. Assim como na
-   * correção de bug aplicada na Etapa 6, o resumo é sempre calculado
-   * filtrando apenas as movimentações do usuário logado.
-   */
   function gerarResumo(idUsuario) {
     const minhas = getMovimentacoesDoUsuario(idUsuario);
     const totalEntradas = minhas

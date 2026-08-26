@@ -1,9 +1,3 @@
-/**
- * cadastro.js — validação e cadastro de novo usuário.
- * Espelha UsuarioService.cadastrar (Etapas 6/7): campos obrigatórios,
- * formato de e-mail, senha com tamanho mínimo, confirmação de senha
- * (regra nova de UX, natural em um formulário web) e e-mail duplicado.
- */
 document.addEventListener("DOMContentLoaded", () => {
   if (CFStorage.getSessao()) {
     window.location.href = "dashboard.html";
