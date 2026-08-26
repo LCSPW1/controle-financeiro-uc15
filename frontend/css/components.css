@@ -1,0 +1,254 @@
+/* ============================================================
+   components.css — botões, cards, tabela, badges, alertas
+   ============================================================ */
+
+/* ---- marca (logomark) ----
+   Página de caderneta com o canto dobrado — desenhada em CSS puro. */
+.brand-mark {
+  width: 30px;
+  height: 30px;
+  background: var(--entrada);
+  position: relative;
+  border-radius: 2px;
+  flex: none;
+}
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent var(--paper) transparent transparent;
+}
+.auth-brand .brand-mark { background: var(--gold); }
+.auth-brand .brand-mark::after { border-color: transparent var(--ink) transparent transparent; }
+
+/* ---- botões ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn-primary:hover { background: #0F1913; }
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--rule-strong);
+  color: var(--ink);
+}
+.btn-secondary:hover { border-color: var(--ink); }
+
+.btn-block { width: 100%; }
+
+.btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---- cartão genérico ---- */
+.card {
+  background: var(--paper-card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---- cartões de resumo (estilo canhoto de caderneta) ----
+   Elemento-assinatura da interface: borda tracejada como picote de
+   talão, rótulo carimbado e número grande em mono tabular, com uma
+   régua colorida embaixo indicando o sinal do valor. */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.stub {
+  background: var(--paper-card);
+  border: 1.5px dashed var(--rule-strong);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  position: relative;
+}
+
+.stub .eyebrow { margin-bottom: var(--space-3); }
+
+.stub .value {
+  font-family: var(--font-mono);
+  font-size: 1.9rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  display: block;
+  margin-bottom: var(--space-3);
+}
+
+.stub .rule {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--rule);
+  width: 60%;
+}
+
+.stub.entrada .value { color: var(--entrada); }
+.stub.entrada .rule { background: var(--entrada); }
+
+.stub.saida .value { color: var(--saida); }
+.stub.saida .rule { background: var(--saida); }
+
+.stub.saldo {
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: var(--ink);
+}
+.stub.saldo .value { font-size: 2.1rem; }
+.stub.saldo.positivo .value { color: var(--entrada); }
+.stub.saldo.positivo .rule { background: var(--entrada); width: 100%; }
+.stub.saldo.negativo .value { color: var(--saida); }
+.stub.saldo.negativo .rule { background: var(--saida); width: 100%; }
+
+@media (max-width: 700px) {
+  .summary-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- tabela de lançamentos ---- */
+.ledger-table {
+  background: var(--paper-card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.ledger-table table { width: 100%; }
+
+.ledger-table thead th {
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.ledger-table tbody td {
+  padding: var(--space-4);
+  font-size: 0.92rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.ledger-table tbody tr:last-child td { border-bottom: none; }
+.ledger-table tbody tr:hover { background: rgba(31, 111, 84, 0.04); }
+
+.ledger-table td.valor {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  font-weight: 600;
+}
+.ledger-table td.valor.entrada { color: var(--entrada); }
+.ledger-table td.valor.saida { color: var(--saida); }
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+.badge.entrada { background: var(--entrada-bg); color: var(--entrada); }
+.badge.saida { background: var(--saida-bg); color: var(--saida); }
+
+/* ---- estado vazio ---- */
+.empty-state {
+  text-align: center;
+  padding: var(--space-8) var(--space-5);
+  color: var(--ink-soft);
+}
+.empty-state p:first-child {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-bottom: var(--space-2);
+}
+
+/* ---- filtro de tipo (tabs) ---- */
+.filter-tabs {
+  display: inline-flex;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.filter-tabs button {
+  padding: 0.5rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  border-right: 1px solid var(--rule-strong);
+}
+.filter-tabs button:last-child { border-right: none; }
+.filter-tabs button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---- alertas / mensagens de sistema ---- */
+.alert {
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  font-size: 0.88rem;
+  margin-bottom: var(--space-5);
+  border: 1px solid transparent;
+  display: none;
+}
+.alert.is-visible { display: block; }
+.alert-error {
+  background: var(--error-bg);
+  border-color: rgba(166, 71, 46, 0.3);
+  color: var(--saida);
+}
+.alert-success {
+  background: var(--entrada-bg);
+  border-color: rgba(31, 111, 84, 0.3);
+  color: var(--entrada);
+}
+
+/* ---- toast (confirmação rápida) ---- */
+.toast {
+  position: fixed;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 20;
+}
+.toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

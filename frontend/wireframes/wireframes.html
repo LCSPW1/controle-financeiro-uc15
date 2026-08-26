@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Wireframes — Controle Financeiro (Etapa 8)</title>
+<style>
+  body { font-family: Helvetica, Arial, sans-serif; background: #fafafa; color: #333; margin: 0; padding: 40px; }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  p.sub { color: #777; margin-top: 0; margin-bottom: 32px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 1400px; }
+  figure { margin: 0; background: #fff; border: 1px solid #ddd; padding: 12px; }
+  figcaption { font-size: 13px; color: #555; margin-top: 8px; }
+  figcaption b { color: #222; }
+  img { width: 100%; height: auto; display: block; border: 1px solid #eee; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <h1>Wireframes — Sistema Web de Controle Financeiro</h1>
+  <p class="sub">Etapa 8 · Baixa fidelidade (estrutura e hierarquia, sem estilo visual final) · Aluno: Luis</p>
+  <div class="grid">
+    <figure>
+      <img src="wireframe-login.svg" alt="Wireframe da tela de login">
+      <figcaption><b>01 — Login</b> (index.html): autenticação com e-mail e senha, link para cadastro.</figcaption>
+    </figure>
+    <figure>
+      <img src="wireframe-cadastro-usuario.svg" alt="Wireframe da tela de cadastro de usuário">
+      <figcaption><b>02 — Cadastro de usuário</b> (cadastro.html): nome, e-mail, senha e confirmação.</figcaption>
+    </figure>
+    <figure>
+      <img src="wireframe-dashboard.svg" alt="Wireframe do dashboard">
+      <figcaption><b>03 — Dashboard</b> (dashboard.html): resumo de entradas/saídas/saldo e lista de lançamentos recentes.</figcaption>
+    </figure>
+    <figure>
+      <img src="wireframe-cadastro-movimentacao.svg" alt="Wireframe da tela de nova movimentação">
+      <figcaption><b>04 — Nova movimentação</b> (nova-movimentacao.html): registro de entrada ou saída com categoria.</figcaption>
+    </figure>
+  </div>
+</body>
+</html>
