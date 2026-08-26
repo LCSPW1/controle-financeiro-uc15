@@ -1,11 +1,11 @@
-# Instruções — Git e GitHub (Etapa 6)
+# Instruções — Git e GitHub
 
 O projeto `controle-financeiro-core` já vem com um repositório Git
-**inicializado localmente** (pasta `.git`, `.gitignore` e o primeiro commit
-já feitos). Você só precisa criar o repositório remoto no GitHub e enviar
-("push") o que já está pronto. Siga os passos abaixo, na ordem, no terminal
-(cmd, PowerShell, Git Bash ou terminal do NetBeans), dentro da pasta do
-projeto extraído.
+**inicializado localmente** (pasta `.git`, `.gitignore` e commits já
+feitos). Você só precisa criar o repositório remoto no GitHub e enviar
+("push") o que já está pronto. Siga os passos abaixo, na ordem, no
+terminal (cmd, PowerShell, Git Bash ou terminal do NetBeans), dentro da
+pasta do projeto extraído.
 
 ## 1. Confirme que o Git está instalado
 
@@ -30,13 +30,12 @@ git status
 git log --oneline
 ```
 
-Você deve ver o commit inicial já criado (algo como
-`"Commit inicial: refatoração da Etapa 6 - controle-financeiro-core"`).
-Se não aparecer nada (repositório vazio), rode:
+Você deve ver os commits já feitos (Etapa 6 e Etapa 7). Se não aparecer
+nada (repositório vazio), rode:
 
 ```bash
 git add .
-git commit -m "Commit inicial: refatoração da Etapa 6 - controle-financeiro-core"
+git commit -m "Commit inicial"
 ```
 
 ## 4. Crie o repositório no site do GitHub
@@ -79,8 +78,9 @@ Token** em GitHub → Settings → Developer settings → Personal access tokens
 ## 6. Confirme que deu certo
 
 Atualize a página do repositório no navegador. Você deve ver todas as
-pastas (`src`, `nbproject`, etc.), o `README.md` renderizado embaixo da
-lista de arquivos, e 1 commit no histórico.
+pastas (`src`, `pom.xml`, `docs`, etc.), o `README.md` renderizado embaixo
+da lista de arquivos, e os commits no histórico
+(`https://github.com/SEU-USUARIO/controle-financeiro-core/commits/main`).
 
 ## 7. Sempre que fizer alterações no projeto depois disso
 
@@ -90,21 +90,18 @@ git commit -m "Descreva o que você mudou"
 git push
 ```
 
-## 8. O que colocar no relatório como evidência
+## 8. Evidência de versionamento para a entrega da Etapa 7
 
-No relatório (`RELATORIO_ETAPA6.docx`), seção **5. Evidências do
-Repositório GitHub**, insira capturas de tela de:
-
-1. A página inicial do repositório no GitHub (mostrando a lista de
-   pastas/arquivos e o README renderizado).
-2. O histórico de commits (`https://github.com/SEU-USUARIO/controle-financeiro-core/commits/main`).
-3. Preencha o campo "Link do repositório" com a URL pública do seu
-   repositório.
+Depois do `git push`, tire um print da página de commits do GitHub
+mostrando o histórico completo (deve incluir o commit da Etapa 6 e o(s)
+commit(s) da Etapa 7, incluindo a migração para Maven). Esta captura é a
+"evidência do versionamento do projeto de testes" pedida no enunciado —
+os testes JUnit (`src/test/java`) fazem parte do mesmo commit/repositório.
 
 ## Observação importante sobre o arquivo de senha do banco
 
-O arquivo `src/db.properties` (com a senha real do MySQL) está listado no
-`.gitignore` de propósito, então **não será enviado ao GitHub** mesmo que
-você o crie localmente. Isso é intencional — nunca se deve versionar
-credenciais reais. Só o arquivo de exemplo (`src/db.properties.example`)
-é enviado.
+O arquivo `src/main/resources/db.properties` (com a senha real do MySQL)
+está listado no `.gitignore` de propósito, então **não será enviado ao
+GitHub** mesmo que você o crie localmente. Isso é intencional — nunca se
+deve versionar credenciais reais. Só o arquivo de exemplo
+(`db.properties.example`) é enviado.

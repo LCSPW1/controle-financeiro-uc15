@@ -1,11 +1,12 @@
-# Build do NetBeans/Ant
-build/
-dist/
+# Build do Maven
+target/
 
 # Configuracao sensivel - nunca versionar credenciais reais
-src/db.properties
+src/main/resources/db.properties
 
 # Arquivos de IDE
-nbproject/private/
-*.class
 .nb-gradle/
+.idea/
+*.iml
+.vscode/
+*.class
