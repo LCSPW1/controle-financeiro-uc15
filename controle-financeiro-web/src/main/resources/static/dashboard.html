@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel — Controle Financeiro</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/forms.css">
+</head>
+<body>
+
+<div class="app-shell">
+  <nav class="app-nav">
+    <div class="mark">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <span>Controle Financeiro</span>
+    </div>
+    <div class="user-menu">
+      <span>Olá, <strong id="nome-usuario">—</strong></span>
+      <button class="btn btn-secondary" id="btn-sair" type="button">Sair</button>
+    </div>
+  </nav>
+
+  <main class="app-main">
+    <section aria-labelledby="titulo-resumo">
+      <p class="eyebrow" id="titulo-resumo" style="margin-bottom: var(--space-3);">Resumo do mês</p>
+
+      <div class="summary-grid">
+        <div class="stub entrada">
+          <p class="eyebrow">Entradas</p>
+          <span class="value num" id="valor-entradas">R$ 0,00</span>
+          <div class="rule"></div>
+        </div>
+        <div class="stub saida">
+          <p class="eyebrow">Saídas</p>
+          <span class="value num" id="valor-saidas">R$ 0,00</span>
+          <div class="rule"></div>
+        </div>
+        <div class="stub saldo positivo" id="stub-saldo">
+          <p class="eyebrow">Saldo</p>
+          <span class="value num" id="valor-saldo">R$ 0,00</span>
+          <div class="rule"></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="titulo-lancamentos">
+      <div class="section-heading">
+        <div>
+          <h2 id="titulo-lancamentos" style="margin-bottom: var(--space-2);">Lançamentos</h2>
+          <div class="filter-tabs" role="group" aria-label="Filtrar lançamentos por tipo">
+            <button type="button" data-filtro="todos" aria-pressed="true">Todos</button>
+            <button type="button" data-filtro="ENTRADA" aria-pressed="false">Entradas</button>
+            <button type="button" data-filtro="SAIDA" aria-pressed="false">Saídas</button>
+          </div>
+        </div>
+        <a href="nova-movimentacao.html" class="btn btn-primary">+ Nova movimentação</a>
+      </div>
+
+      <div class="ledger-table" id="wrap-tabela">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Descrição</th>
+              <th>Categoria</th>
+              <th>Tipo</th>
+              <th style="text-align:right;">Valor</th>
+            </tr>
+          </thead>
+          <tbody id="corpo-tabela"></tbody>
+        </table>
+      </div>
+
+      <div class="empty-state" id="estado-vazio" hidden>
+        <p>Nenhum lançamento por aqui ainda</p>
+        <p class="text-muted" style="margin-bottom: var(--space-5);">Registre sua primeira entrada ou saída para ver o resumo tomar forma.</p>
+        <a href="nova-movimentacao.html" class="btn btn-primary">+ Nova movimentação</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

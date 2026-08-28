@@ -1,0 +1,147 @@
+/* ============================================================
+   forms.css — campos de formulário, validação visual, toggle
+   ============================================================ */
+
+.field {
+  margin-bottom: var(--space-5);
+}
+
+.field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-2);
+}
+
+.field .hint {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-top: var(--space-2);
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="password"],
+.field input[type="number"],
+.field select {
+  width: 100%;
+  padding: 0.75rem var(--space-4);
+  background: var(--paper-card);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.field input::placeholder { color: #9AA69D; }
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(185, 138, 46, 0.18);
+}
+
+.field select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%),
+                     linear-gradient(135deg, var(--ink-soft) 50%, transparent 50%);
+  background-position: calc(100% - 20px) center, calc(100% - 15px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: var(--space-7);
+}
+
+.field .value-prefix {
+  position: relative;
+}
+.field .value-prefix span {
+  position: absolute;
+  left: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+.field .value-prefix input {
+  padding-left: 2.1rem;
+  font-family: var(--font-mono);
+}
+
+/* ---- estado de erro por campo ---- */
+.field.has-error input,
+.field.has-error select {
+  border-color: var(--saida);
+  background: var(--saida-bg);
+}
+.field .error-message {
+  display: none;
+  color: var(--saida);
+  font-size: 0.78rem;
+  margin-top: var(--space-2);
+  font-weight: 500;
+}
+.field.has-error .error-message { display: block; }
+.field.has-error .hint { display: none; }
+
+/* ---- toggle Entrada / Saída ---- */
+.type-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.type-toggle .type-option {
+  /* Ancestral posicionado do input (agora um FILHO, não um irmão) —
+     é o que confina a área clicável invisível aos limites do próprio
+     botão, em vez de "vazar" e cobrir o resto da página. */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.85rem;
+  border: 1.5px solid var(--rule-strong);
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+}
+
+.type-toggle input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.type-toggle input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.type-toggle .type-option:has(#tipo-entrada:checked) {
+  border-color: var(--entrada);
+  background: var(--entrada-bg);
+  color: var(--entrada);
+}
+.type-toggle .type-option:has(#tipo-saida:checked) {
+  border-color: var(--saida);
+  background: var(--saida-bg);
+  color: var(--saida);
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+.form-actions .btn { flex: 1; }

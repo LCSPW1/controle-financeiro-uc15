@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.controlefinanceiro</groupId>
+        <artifactId>controle-financeiro-webapp</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>controle-financeiro-core</artifactId>
+    <packaging>jar</packaging>
+
+    <name>controle-financeiro-core</name>
+    <description>
+        Camada de regras de negocio do sistema de Controle Financeiro,
+        extraida do projeto desktop Java Swing (Etapa 6) para reuso pelo
+        sistema web. Inclui testes unitarios JUnit 5 (Etapa 7) e o
+        mecanismo de hash de senha adicionado na Etapa 9 para viabilizar
+        a integracao segura com o back-end web.
+    </description>
+
+    <dependencies>
+        <!-- JUnit 5 (Jupiter) - usado apenas em testes (escopo "test") -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+            Driver JDBC do MySQL - NECESSARIO APENAS em tempo de execucao,
+            e apenas se o modulo controle-financeiro-web for configurado
+            para usar MySQL em vez do banco H2 embutido (padrao). Veja
+            controle-financeiro-web/pom.xml e application.properties.
+            Este modulo (core) nao precisa do driver para compilar nem
+            para rodar seus proprios testes, pois usa apenas classes
+            java.sql.* (parte do JDK) e os repositorios em memoria
+            (repository.memory) nos testes.
+        -->
+    </dependencies>
+
+    <build>
+        <finalName>controle-financeiro-core</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+
+            <!-- Executa os testes JUnit 5 com "mvn test" -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+
+            <!-- Permite gerar um .jar executavel com "mvn package" -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.controlefinanceiro.core.app.ControleFinanceiroCoreApp</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

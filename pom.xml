@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.controlefinanceiro</groupId>
+    <artifactId>controle-financeiro-webapp</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>controle-financeiro-webapp</name>
+    <description>
+        Projeto agregador (multi-modulo Maven) do sistema de Controle
+        Financeiro. Reune o modulo de regras de negocio
+        (controle-financeiro-core, Etapas 6 e 7) e o modulo de aplicacao
+        web (controle-financeiro-web, Etapa 9), que integra o core com um
+        banco de dados relacional (JDBC) e com o front-end desenvolvido na
+        Etapa 8.
+
+        "mvn clean install" executado nesta pasta raiz compila e instala
+        os dois modulos, na ordem correta, automaticamente (o Maven
+        detecta que controle-financeiro-web depende de
+        controle-financeiro-core e resolve a ordem de build sozinho).
+    </description>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.jupiter.version>5.10.2</junit.jupiter.version>
+    </properties>
+
+    <modules>
+        <module>controle-financeiro-core</module>
+        <module>controle-financeiro-web</module>
+    </modules>
+</project>

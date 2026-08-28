@@ -1,0 +1,267 @@
+/* ============================================================
+   style.css — tokens de design, tipografia e layout base
+
+   Identidade visual: "caderneta / livro-razão". A referência é o
+   extrato bancário em papel: linhas pautadas, números tabulares,
+   carimbos de categoria. Paleta de papel-cru e tinta verde-escura,
+   com verde-cédula para entradas e tijolo para saídas.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+:root {
+  /* ---- cor ---- */
+  --paper:        #F1EFE6;   /* fundo geral, papel cru */
+  --paper-card:   #FBFAF4;   /* fundo dos cartões, levemente mais claro */
+  --ink:          #1C2B24;   /* texto principal, "tinta" verde-preta */
+  --ink-soft:     #4B5A52;   /* texto secundário */
+  --rule:         #CFC8B0;   /* linhas pautadas / bordas sutis */
+  --rule-strong:  #A79F84;
+
+  --entrada:      #1F6F54;   /* verde-cédula: entradas / positivo */
+  --entrada-bg:   #E4EFE9;
+  --saida:        #A6472E;   /* tijolo: saídas / negativo */
+  --saida-bg:     #F3E7E2;
+  --gold:         #B98A2E;   /* destaque / foco / carimbo */
+  --gold-bg:      #F3E8D2;
+
+  --error:        #A6472E;
+  --error-bg:     #F3E7E2;
+
+  /* ---- tipografia ---- */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+
+  /* ---- espaçamento ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --radius: 3px;
+  --shadow-card: 0 1px 2px rgba(28, 43, 36, 0.06), 0 4px 16px rgba(28, 43, 36, 0.05);
+}
+
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.375rem; }
+h3 { font-size: 1.05rem; }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.text-muted { color: var(--ink-soft); }
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---- links de texto ---- */
+.link {
+  color: var(--entrada);
+  font-weight: 600;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+.link:hover { color: var(--ink); }
+
+/* ---- foco visível (acessibilidade) ---- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ---- layout: shell de autenticação (login / cadastro) ---- */
+.auth-shell {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: minmax(280px, 38%) 1fr;
+}
+
+.auth-brand {
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--space-7) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-brand::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 38px,
+    rgba(241, 239, 230, 0.05) 39px
+  );
+  pointer-events: none;
+}
+
+.auth-brand .mark {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  position: relative;
+}
+
+.auth-brand .mark span {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.auth-brand .tagline {
+  position: relative;
+  max-width: 320px;
+}
+
+.auth-brand .tagline h2 {
+  color: var(--paper);
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin-bottom: var(--space-3);
+}
+
+.auth-brand .tagline p {
+  color: #B9C4BC;
+  font-size: 0.92rem;
+}
+
+.auth-brand .foot {
+  position: relative;
+  font-size: 0.78rem;
+  color: #8B9A91;
+}
+
+.auth-form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+}
+
+.auth-form-wrap {
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-form-wrap h1 {
+  margin-bottom: var(--space-2);
+}
+
+.auth-form-wrap > .text-muted {
+  margin-bottom: var(--space-6);
+  display: block;
+}
+
+.auth-switch {
+  margin-top: var(--space-5);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 760px) {
+  .auth-shell { grid-template-columns: 1fr; }
+  .auth-brand { padding: var(--space-5); }
+  .auth-brand .tagline h2 { font-size: 1.3rem; }
+}
+
+/* ---- layout: app shell (dashboard / nova movimentação) ---- */
+.app-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-nav {
+  background: var(--paper-card);
+  border-bottom: 1px solid var(--rule);
+  padding: var(--space-4) var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-nav .mark {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.app-nav .user-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.app-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: var(--space-6);
+}
+
+.app-main.narrow {
+  max-width: 640px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-5);
+}
+.back-link:hover { color: var(--ink); }
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}

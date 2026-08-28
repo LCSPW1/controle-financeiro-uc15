@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.controlefinanceiro</groupId>
+        <artifactId>controle-financeiro-webapp</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>controle-financeiro-web</artifactId>
+    <packaging>jar</packaging>
+
+    <name>controle-financeiro-web</name>
+    <description>
+        Aplicacao web (Spring Boot REST) da Etapa 9. Integra o modulo
+        controle-financeiro-core (regras de negocio das Etapas 6/7) com um
+        banco de dados relacional via JDBC, e expoe uma API REST consumida
+        pelo front-end desenvolvido na Etapa 8 (servido como recurso
+        estatico deste mesmo modulo).
+    </description>
+
+    <!--
+        O Spring Boot normalmente e configurado com um parent proprio
+        (spring-boot-starter-parent), que gerencia as versoes de todas
+        as dependencias do ecossistema Spring. Como este projeto ja tem
+        um parent (o pom.xml agregador com os dois modulos), usamos o
+        Spring Boot via "dependencyManagement" com um BOM (Bill of
+        Materials) em vez de heranca direta - o resultado pratico e o
+        mesmo: todas as versoes do Spring Boot ficam alinhadas entre si.
+    -->
+    <properties>
+        <spring-boot.version>3.3.4</spring-boot.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Modulo de regras de negocio das Etapas 6/7 -->
+        <dependency>
+            <groupId>com.controlefinanceiro</groupId>
+            <artifactId>controle-financeiro-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- API REST (controllers, serializacao JSON, servidor embutido) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--
+            Fornece o DataSource (pool de conexoes HikariCP) e a execucao
+            automatica de schema.sql/data.sql na inicializacao. As classes
+            DAO em si (UsuarioDAO, CategoriaDAO, MovimentacaoDAO) sao as
+            mesmas da Etapa 6/7, feitas com JDBC puro - o Spring aqui so
+            fornece e gerencia a Connection, via a classe
+            DataSourceConexaoDB (ver pacote config).
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!--
+            Banco H2 embutido - usado por padrao (application.properties),
+            sem precisar instalar nada. Roda em memoria, e os dados sao
+            recriados a cada reinicio a partir de schema.sql + data.sql.
+            Ideal para desenvolvimento, demonstracao e correcao da
+            atividade sem depender de infraestrutura externa.
+        -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--
+            Driver JDBC do MySQL - necessario apenas se voce trocar o
+            perfil ativo para "mysql" em application.properties, para usar
+            um banco MySQL real (por exemplo, o mesmo configurado nas
+            Etapas 6/7) em vez do H2 embutido. Ver README.md.
+        -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>controle-financeiro-web</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <mainClass>com.controlefinanceiro.web.ControleFinanceiroWebApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

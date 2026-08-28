@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrar — Controle Financeiro</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/forms.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <aside class="auth-brand">
+    <div class="mark">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <span>Controle Financeiro</span>
+    </div>
+
+    <div class="tagline">
+      <h2>Cada entrada e saída, registrada como deve ser.</h2>
+      <p>Acompanhe seu saldo com a mesma clareza de um extrato bem organizado — sem planilha, sem bagunça.</p>
+    </div>
+
+    <div class="foot">Projeto Integrador · Sistema de Controle Financeiro</div>
+  </aside>
+
+  <main class="auth-form-side">
+    <div class="auth-form-wrap">
+      <h1>Entrar</h1>
+      <span class="text-muted">Acesse sua conta para ver seu resumo financeiro.</span>
+
+      <div class="alert alert-error" id="alert-erro" role="alert"></div>
+
+      <form id="form-login" novalidate>
+        <div class="field" id="field-email">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="voce@exemplo.com" autocomplete="username">
+          <p class="error-message"></p>
+        </div>
+
+        <div class="field" id="field-senha">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" placeholder="••••••••" autocomplete="current-password">
+          <p class="error-message"></p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+      </form>
+
+      <p class="auth-switch">Ainda não tem conta? <a class="link" href="cadastro.html">Criar conta</a></p>
+    </div>
+  </main>
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>
