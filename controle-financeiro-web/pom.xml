@@ -109,6 +109,35 @@
     <build>
         <finalName>controle-financeiro-web</finalName>
         <plugins>
+            <!--
+                Sem herdar de spring-boot-starter-parent (usamos o BOM via
+                dependencyManagement em vez de heranca direta - ver
+                comentário acima), este projeto perde algumas
+                configurações padrão que o parent do Spring Boot normalmente
+                aplica sozinho. Uma delas é a flag do compilador "-parameters",
+                necessária para o Spring conseguir descobrir o NOME de
+                parâmetros de método (ex.: @RequestParam int idUsuario, sem
+                indicar explicitamente o nome) via reflection. Sem esta
+                configuração, a aplicação compila normalmente, mas lança um
+                erro em tempo de execução ao processar a requisição
+                ("Name for argument of type [int] not specified..."), pois o
+                nome do parâmetro não fica disponível no .class compilado.
+
+                Corrigido de duas formas: (1) esta configuração explícita do
+                compilador, e (2) os @RequestParam do projeto agora também
+                indicam o nome explicitamente (ex.: @RequestParam("idUsuario")),
+                que funciona independente desta flag.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>17</release>
+                    <parameters>true</parameters>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

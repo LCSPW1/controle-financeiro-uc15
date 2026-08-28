@@ -46,14 +46,14 @@ public class MovimentacaoController {
     }
 
     @GetMapping("/movimentacoes")
-    public List<MovimentacaoResponse> listar(@RequestParam int idUsuario) {
+    public List<MovimentacaoResponse> listar(@RequestParam("idUsuario") int idUsuario) {
         return movimentacaoService.listarMovimentacoes(idUsuario).stream()
                 .map(MovimentacaoResponse::de)
                 .toList();
     }
 
     @GetMapping("/resumo")
-    public ResumoResponse resumo(@RequestParam int idUsuario) {
+    public ResumoResponse resumo(@RequestParam("idUsuario") int idUsuario) {
         return ResumoResponse.de(movimentacaoService.gerarResumo(idUsuario));
     }
 
