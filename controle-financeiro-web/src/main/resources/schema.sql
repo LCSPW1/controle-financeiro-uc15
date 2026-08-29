@@ -1,11 +1,6 @@
--- ============================================================
--- schema.sql — compatível com H2 (perfil padrão) e MySQL (perfil
--- "mysql"), sem sintaxe específica de nenhum dos dois bancos.
---
--- Os nomes de coluna e tabela seguem exatamente o que as classes
--- JDBC do módulo controle-financeiro-core (UsuarioDAO, CategoriaDAO,
--- MovimentacaoDAO — Etapas 6/7) já esperam nas suas consultas SQL.
--- ============================================================
+CREATE DATABASE controle_financeiro;
+
+USE DATABASE controle_financeiro;
 
 CREATE TABLE IF NOT EXISTS usuario (
     id_usuario  INT AUTO_INCREMENT PRIMARY KEY,

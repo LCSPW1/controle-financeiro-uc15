@@ -14,14 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Endpoints de movimentação (entradas/saídas) e resumo financeiro.
- *
- * Assim como o AuthController, cada método é uma tradução direta HTTP →
- * MovimentacaoService (Etapas 6/7/9) → resposta HTTP. A única lógica que
- * não vem do core é a conversão do parâmetro de texto "tipo" (ENTRADA ou
- * SAIDA, vindo do JSON) para o enum TipoMovimentacao.
- */
 @RestController
 @RequestMapping("/api")
 public class MovimentacaoController {

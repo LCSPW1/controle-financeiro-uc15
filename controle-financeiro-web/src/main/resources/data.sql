@@ -1,9 +1,3 @@
--- ============================================================
--- data.sql — categorias padrão, com os mesmos ids e nomes usados
--- em InMemoryCategoriaRepository (controle-financeiro-core), para
--- manter os dados de teste consistentes entre os módulos.
--- ============================================================
-
 INSERT INTO categoria (id_categoria, nome) VALUES (1, 'Alimentação');
 INSERT INTO categoria (id_categoria, nome) VALUES (2, 'Salário');
 INSERT INTO categoria (id_categoria, nome) VALUES (3, 'Transporte');

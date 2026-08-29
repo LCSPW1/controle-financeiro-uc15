@@ -1,17 +1,7 @@
-# Build do Maven (gerado em cada modulo)
 target/
-
-# Credenciais reais - nunca versionar
-application-local.properties
-db.properties
-
 # Arquivos de IDE
 .idea/
 *.iml
 .vscode/
 .nb-gradle/
 *.class
-
-# Banco H2 em arquivo, caso alguem troque de "mem" para "file" localmente
-*.mv.db
-*.trace.db

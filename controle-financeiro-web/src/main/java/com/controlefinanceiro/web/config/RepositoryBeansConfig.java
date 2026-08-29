@@ -18,24 +18,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * Ponto central da integração pedida na Etapa 9: aqui o módulo
- * controle-financeiro-web "liga" as classes já prontas do
- * controle-financeiro-core (Etapas 6/7) ao Spring, sem precisar alterar
- * nenhuma dessas classes.
- *
- * As credenciais de conexão vêm de application.properties (chaves
- * spring.datasource.*, as mesmas usadas pelo Spring Boot para o H2/MySQL),
- * e são repassadas para {@link DatabaseConfig} — a mesma classe criada na
- * Etapa 6 para ler credenciais de um arquivo, agora alimentada pelo
- * mecanismo de configuração do Spring em vez de um db.properties solto.
- *
- * Os beans de repositório aqui expostos são as implementações JDBC reais
- * (UsuarioDAO, CategoriaDAO, MovimentacaoDAO) — as mesmas que, na Etapa 7,
- * só eram exercitadas pelas implementações em memória. Esta é a primeira
- * vez, em todo o Projeto Integrador, que essas classes JDBC rodam de fato
- * contra um banco de dados.
- */
 @Configuration
 public class RepositoryBeansConfig {
 

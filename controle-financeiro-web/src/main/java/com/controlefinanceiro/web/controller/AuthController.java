@@ -13,15 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Endpoints de cadastro e autenticação de usuário.
- *
- * Cada método aqui é essencialmente uma tradução direta HTTP → chamada de
- * método do UsuarioService (Etapas 6/7) → resposta HTTP. Toda a regra de
- * negócio (validação de campos, e-mail duplicado, verificação de senha)
- * continua vivendo inteiramente no core; o controller não duplica nenhuma
- * validação.
- */
 @RestController
 @RequestMapping("/api")
 public class AuthController {
